@@ -6,6 +6,8 @@ def sort_012(input_list):
 
     Source: Udacity lecture on "Sorting Algorithms"
     """
+    if not isinstance(input_list, list):
+        raise ValueError("Please insert a list.") 
     # initialize pointers for next positions of 0 and 2
     next_pos_0 = 0
     next_pos_2 = len(input_list) - 1
@@ -29,7 +31,7 @@ def sort_012(input_list):
 
 def test_function(test_case):
     sorted_array = sort_012(test_case)
-    print(sorted_array)
+    # print(sorted_array)
     if sorted_array == sorted(test_case):
         print("Pass")
     else:
@@ -40,4 +42,7 @@ def test_function(test_case):
 test_function([0, 0, 2, 2, 2, 1, 1, 1, 2, 0, 2])
 test_function([2, 1, 2, 0, 0, 2, 1, 0, 1, 0, 0, 2, 2, 2, 1, 2, 0, 0, 0, 2, 1, 0, 2, 0, 0, 1])
 test_function([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2])
+sort_012([]) # Edge case: empty list
+sort_012("") # Edge case: empty string as input
+sort_012((0,1,2,1,0)) # Edge case: tuple as input
 # %%

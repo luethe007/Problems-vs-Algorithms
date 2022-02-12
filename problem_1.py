@@ -1,4 +1,6 @@
 # %%
+from multiprocessing.sharedctypes import Value
+
 def sqrt(n):
    """
    Calculate the floored square root of a number.
@@ -8,6 +10,10 @@ def sqrt(n):
    Returns:
       int: Floored Square Root
    """
+   # Check that input is int
+   if not isinstance(n, int):
+      raise ValueError("Please insert an integer value.")
+
    # Check for negative values
    if n < 0:
       raise ValueError("There is no square root of a negative number.")
@@ -50,7 +56,9 @@ try:
    sqrt(-27)
 except ValueError:
    print("Pass")
-print("Pass" if  (1014 == sqrt(1030000)) else "Fail")
+print("Pass" if  (1014 == sqrt(1030000)) else "Fail") # Edge case: large value
+sqrt("") # Edge case: empty input
+sqrt(None) # Empty case: None input
 
 
 # %%

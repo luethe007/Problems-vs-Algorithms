@@ -8,6 +8,9 @@ def rotated_array_search(input_list, target):
         Returns:
             int: Index or -1
     """
+    if not isinstance(input_list, list):
+        raise ValueError("Please provide a list.")    
+
     # Call recursive search
     target_index = recursive_search(input_list, 0, len(input_list)-1, target)
     return target_index
@@ -54,9 +57,14 @@ def test_function(test_case):
 
 # %%
 test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 6])
+
 test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 1])
 test_function([[6, 7, 8, 1, 2, 3, 4], 8])
 test_function([[6, 7, 8, 1, 2, 3, 4], 1])
 test_function([[6, 7, 8, 1, 2, 3, 4], 10])
+rotated_array_search([],10)
+test_function([[], 10]) # Edge case: empty list
+test_function([None, 10]) # Edge case: None input
+test_function([(1,4,2,5,10,22), 10]) # Edge case: wrong input type
 
 # %%

@@ -8,6 +8,9 @@ def rearrange_digits(input_list: list):
     Returns:
        (int),(int): Two maximum sums
     """
+    if not isinstance(input_list, list):
+        raise ValueError("Please insert a list.")    
+
     # Check for valid input
     if len(input_list) <= 1:
         raise ValueError("Please insert a list with at least two numbers.")
@@ -87,6 +90,7 @@ def test_function(test_case):
 # %% 
 test_function([[1, 2, 3, 4, 5], [542, 31]])
 test_function([[4, 6, 2, 5, 9, 8], [964, 852]])
-test_function([[], "ValueError"]) # Value Error due to invalid input
+test_function([[], "ValueError"]) # Edge case: Value Error due to invalid input
 test_function([[1,-2,-2,5], "ValueError"]) # Value Error due to invalid numbers
+test_function([None, 10]) # Edge case: None input
 # %%

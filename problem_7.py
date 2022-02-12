@@ -1,5 +1,8 @@
 # %%
 # A RouteTrieNode will be similar to our autocomplete TrieNode... with one additional element, a handler.
+from multiprocessing.sharedctypes import Value
+
+
 class RouteTrieNode:
     def __init__(self, value: str, handler="not found handler"):
         # Initialize the node with children as before, plus a handler
@@ -64,6 +67,8 @@ class Router:
         # return the "not found" handler if you added one
         # bonus points if a path works with and without a trailing slash
         # e.g. /about and /about/ both return the /about handler
+        if not isinstance(route, str):
+            raise ValueError("Please provide path as str.")
         route_cleaned = self.split_path(route)
         handler = self.route_trie.find(route_cleaned)
         return handler if handler else "not found handler"
@@ -87,4 +92,8 @@ print(router.lookup("/home")) # should print 'not found handler' or None if you 
 print(router.lookup("/home/about")) # should print 'about handler'
 print(router.lookup("/home/about/")) # should print 'about handler' or None if you did not handle trailing slashes
 print(router.lookup("/home/about/me")) # should print 'not found handler' or None if you did not implement one
+
+router.lookup("") # Edge case: empty string
+router.lookup(None) # Edge case: None input
+
 # %%
